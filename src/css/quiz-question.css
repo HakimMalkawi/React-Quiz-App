@@ -1,0 +1,96 @@
+.quiz-question-container {
+    display: grid;
+    grid-template: auto / 40rem 40rem;
+    grid-template-areas:
+        "title title"   ;
+    grid-gap: 2rem;
+    align-self: center; }
+
+.quiz-question-title {
+    grid-area: title;
+    font-size: 2.5rem;
+    text-align: center; }
+
+.quiz-question-answer {
+    display: grid;
+    align-content: center;
+    justify-self: center;
+    font-size: 2.25rem;
+    width: 35rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem 2rem 1.25rem 2rem;
+    background: var(--dark);
+    color: var(--light);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 15px 15px -10px black;
+    transition: background .25s ease-in-out, color .25s ease-in-out; }
+
+.quiz-question-answer.open:hover,
+.quiz-question-answer.open:focus {
+    cursor: pointer;
+    background: var(--teal);
+    color: var(--darker); }
+
+.quiz-question-answer.open:active { box-shadow: inset 3px 3px 10px 0 var(--darker); }
+
+.correct {
+    background: var(--teal);
+    color: var(--light); }
+
+.wrong {
+    color: var(--light);
+    background: var(--ruby); }
+
+.revealed {
+    color: var(--light);
+    outline: 2px salmon solid; }
+
+.quiz-question-answer.selected {
+    background: var(--light);
+    color: var(--dark);
+    outline: var(--light) solid 2px; }
+
+.quiz-question-answer.selected:hover, 
+.quiz-question-answer.selected:focus {
+    background: var(--ruby);
+    color: var(--light); }
+
+.quiz-question-answer.dimmed { opacity: 50%; }
+
+@media screen and (min-width: 700px) and (max-width: 850px) {
+    .quiz-question-container { grid-gap: 1.5rem; }
+
+    .quiz-question-title {
+        font-size: 2rem;
+        width: 50rem;
+        justify-self: center; }
+
+    .quiz-question-answer {
+        position: relative;
+        font-size: 1.75rem;
+        width: 25rem;
+        padding: .75rem 1.75rem 1rem 1.75rem; }
+
+    .quiz-question-answer:nth-child(even) {
+        justify-self: end;
+        right: 10px; }
+
+    .quiz-question-answer:nth-child(odd) {
+        justify-self: start;
+        left: 10px }}
+
+@media (max-width: 700px) {
+    .quiz-question-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+
+    .quiz-question-title {
+        justify-self: center;
+        width: 50rem; }}
+
+@media (max-width: 550px) {
+    .quiz-question-title { font-size: 4.5rem; }
+    .quiz-question-answer { font-size: 4rem; }}
