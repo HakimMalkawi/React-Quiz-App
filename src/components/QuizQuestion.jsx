@@ -31,5 +31,5 @@ const QuizQuestion = props => {
     return  <>  <section className={`quiz-question-container ${props.id}`}>
                 <h1 className="quiz-question-title">{Buffer.from(props.question, 'base64').toString('utf-8')}</h1>
                 {answerChoices}
-            </section>  </> }
+                </section>  </> }
 export default QuizQuestion

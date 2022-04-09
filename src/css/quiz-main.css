@@ -50,17 +50,18 @@
     font-weight: bold;
     font-size: 3rem;
     padding: 1.5rem 4rem 1.75rem 4rem;
-    background: var(--teal);
-    color: var(--light);
+    background: var(--light);
+    color: var(--darker); 
     border-radius: 10px;
     border: none;
-    box-shadow: 0 5px 15px -5px black; }
+    box-shadow: 0 5px 15px -5px black; 
+    transition: background .25s ease-in-out, color .25s ease-in-out;    }
 
 .quiz-button:hover,
 .quiz-button:focus {
     cursor: pointer;
-    background: var(--light);
-    color: var(--darker); }
+    background: var(--teal);
+    color: var(--light);    }
 
 .quiz-button:active { box-shadow: inset 2px 2px 15px var(--darker); }
 

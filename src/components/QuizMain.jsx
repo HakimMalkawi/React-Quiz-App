@@ -2,12 +2,14 @@ import {useState, useEffect} from "react"
 import {nanoid} from "nanoid"
 import {Buffer} from "buffer"
 import QuizQuestion from "./QuizQuestion"
+import ConfirmAnswers from "./ConfirmAnswers"
 import "../css/quiz-main.css"
 
 const QuizMain = () => {
     const [quizData, setQuizData] = useState(null)
     const [questions, setQuestions] = useState(null)
     const [answers, setAnswers] = useState({1: null, 2: null, 3: null, 4: null, 5: null, 6: null})
+    const [confirmAnswers, setConfirmAnswers] = useState(false)
     const [gradeQuestions, setGradeQuestions] = useState(false)
     const [score, setScore] = useState(null)
     
@@ -45,7 +47,8 @@ const QuizMain = () => {
             const selectAnswer = () => {
                 clearPrevSelections()
                 document.querySelector(currentAnswerId).classList.add("selected")
-                setAnswers(prevAnswers => { return { ...prevAnswers, [id]: [Buffer.from(event.target.innerText).toString('base64'), currentAnswerId] }  })  }
+                setAnswers(prevAnswers => { return { 
+                    ...prevAnswers, [id]: [Buffer.from(event.target.innerText).toString('base64'), currentAnswerId] }  } )  }
 
             const deselectAnswer = () => {
                 document.querySelector(currentAnswerId).classList.remove("selected")
@@ -66,7 +69,9 @@ const QuizMain = () => {
                 <h1 className="quiz-title">Select your answers and submit them to recieve a score</h1>
                 <section className="quiz-questions">{quizData && questions}</section>
                 {gradeQuestions && <h5 className="quiz-score">You scored <span>{score}/6</span> correct answers</h5>}
-                <button onClick={()=>gradeQuestions?restartQuiz():checkAnswers()} className="quiz-button" 
+                <ConfirmAnswers handleClick={checkAnswers} state={confirmAnswers} handleState={setConfirmAnswers}>
+                <button onClick={()=>gradeQuestions?restartQuiz():setConfirmAnswers(true)} className="quiz-button" 
                     id={gradeQuestions ? "show" : null}>{gradeQuestions ? "Play Again" : "Check Answers"}</button>
+                </ConfirmAnswers>
                 </main> }</> }
 export default QuizMain
